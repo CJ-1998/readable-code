@@ -1,4 +1,4 @@
-package cleancode.studycafe.tobe.model;
+package cleancode.studycafe.my_tobe.model;
 
 public enum StudyCafePassType {
 

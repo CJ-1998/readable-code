@@ -1,4 +1,4 @@
-package cleancode.studycafe.tobe;
+package cleancode.studycafe.my_tobe;
 
 import cleancode.studycafe.tobe.exception.AppException;
 import cleancode.studycafe.tobe.io.InputHandler;

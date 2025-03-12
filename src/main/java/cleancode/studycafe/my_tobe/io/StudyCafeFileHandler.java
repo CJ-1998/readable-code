@@ -1,4 +1,4 @@
-package cleancode.studycafe.tobe.io;
+package cleancode.studycafe.my_tobe.io;
 
 import cleancode.studycafe.tobe.model.StudyCafeLockerPass;
 import cleancode.studycafe.tobe.model.StudyCafePass;
