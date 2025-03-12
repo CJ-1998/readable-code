@@ -28,21 +28,21 @@ public class StudyCafePassMachine {
             if (studyCafePassType == StudyCafePassType.HOURLY) {
                 List<StudyCafePass> hourlyPasses = getStudyCafePasses(StudyCafePassType.HOURLY);
 
-                outputHandler.showPassListForSelection(hourlyPasses);
+                showPassList(hourlyPasses);
                 StudyCafePass selectedPass = inputHandler.getSelectPass(hourlyPasses);
                 outputHandler.showPassOrderSummary(selectedPass, null);
             }
             else if (studyCafePassType == StudyCafePassType.WEEKLY) {
                 List<StudyCafePass> weeklyPasses = getStudyCafePasses(StudyCafePassType.WEEKLY);
 
-                outputHandler.showPassListForSelection(weeklyPasses);
+                showPassList(weeklyPasses);
                 StudyCafePass selectedPass = inputHandler.getSelectPass(weeklyPasses);
                 outputHandler.showPassOrderSummary(selectedPass, null);
             }
             else if (studyCafePassType == StudyCafePassType.FIXED) {
                 List<StudyCafePass> fixedPasses = getStudyCafePasses(StudyCafePassType.FIXED);
 
-                outputHandler.showPassListForSelection(fixedPasses);
+                showPassList(fixedPasses);
                 StudyCafePass selectedPass = inputHandler.getSelectPass(fixedPasses);
 
                 List<StudyCafeLockerPass> lockerPasses = studyCafeFileHandler.readLockerPasses();
@@ -71,6 +71,10 @@ public class StudyCafePassMachine {
         } catch (Exception e) {
             outputHandler.showSimpleMessage("알 수 없는 오류가 발생했습니다.");
         }
+    }
+
+    private void showPassList(List<StudyCafePass> hourlyPasses) {
+        outputHandler.showPassListForSelection(hourlyPasses);
     }
 
     private static List<StudyCafePass> getStudyCafePasses(StudyCafePassType passType) {
