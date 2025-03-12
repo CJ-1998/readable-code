@@ -46,14 +46,7 @@ public class StudyCafePassMachine {
                 showPassList(fixedPasses);
                 StudyCafePass selectedPass = inputHandler.getSelectPass(fixedPasses);
 
-                List<StudyCafeLockerPass> lockerPasses = studyCafeFileHandler.readLockerPasses();
-                StudyCafeLockerPass lockerPass = lockerPasses.stream()
-                        .filter(option ->
-                                option.getPassType() == selectedPass.getPassType()
-                                        && option.getDuration() == selectedPass.getDuration()
-                        )
-                        .findFirst()
-                        .orElse(null);
+                StudyCafeLockerPass lockerPass = getStudyCafeLockerPass(selectedPass);
 
                 boolean lockerSelection = false;
                 if (lockerPass != null) {
@@ -74,16 +67,28 @@ public class StudyCafePassMachine {
         }
     }
 
-    private void showPassList(List<StudyCafePass> hourlyPasses) {
-        outputHandler.showPassListForSelection(hourlyPasses);
-    }
-
     private static List<StudyCafePass> getStudyCafePasses(StudyCafePassType passType) {
         List<StudyCafePass> studyCafePasses = studyCafeFileHandler.readStudyCafePasses();
         List<StudyCafePass> filteredPasses = studyCafePasses.stream()
                 .filter(studyCafePass -> studyCafePass.getPassType() == passType)
                 .toList();
         return filteredPasses;
+    }
+
+    private static StudyCafeLockerPass getStudyCafeLockerPass(StudyCafePass selectedPass) {
+        List<StudyCafeLockerPass> lockerPasses = studyCafeFileHandler.readLockerPasses();
+        StudyCafeLockerPass lockerPass = lockerPasses.stream()
+                .filter(option ->
+                        option.getPassType() == selectedPass.getPassType()
+                                && option.getDuration() == selectedPass.getDuration()
+                )
+                .findFirst()
+                .orElse(null);
+        return lockerPass;
+    }
+
+    private void showPassList(List<StudyCafePass> hourlyPasses) {
+        outputHandler.showPassListForSelection(hourlyPasses);
     }
 
 }
