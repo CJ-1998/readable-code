@@ -48,11 +48,7 @@ public class StudyCafePassMachine {
 
                 StudyCafeLockerPass lockerPass = getStudyCafeLockerPass(selectedPass);
 
-                boolean lockerSelection = false;
-                if (lockerPass != null) {
-                    outputHandler.askLockerPass(lockerPass);
-                    lockerSelection = inputHandler.getLockerSelection();
-                }
+                boolean lockerSelection = isLockerSelection(lockerPass);
 
                 if (lockerSelection) {
                     outputHandler.showPassOrderSummary(selectedPass, lockerPass);
@@ -86,6 +82,16 @@ public class StudyCafePassMachine {
                 .orElse(null);
         return lockerPass;
     }
+
+    private boolean isLockerSelection(StudyCafeLockerPass lockerPass) {
+        boolean lockerSelection = false;
+        if (lockerPass != null) {
+            outputHandler.askLockerPass(lockerPass);
+            lockerSelection = inputHandler.getLockerSelection();
+        }
+        return lockerSelection;
+    }
+
 
     private void showPassList(List<StudyCafePass> hourlyPasses) {
         outputHandler.showPassListForSelection(hourlyPasses);
