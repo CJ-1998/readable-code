@@ -2,7 +2,6 @@ package cleancode.studycafe.tobe.io;
 
 import cleancode.studycafe.tobe.model.StudyCafeLockerPass;
 import cleancode.studycafe.tobe.model.StudyCafePass;
-
 import java.util.List;
 
 public class OutputHandler {
@@ -34,12 +33,16 @@ public class OutputHandler {
     public void askLockerPass(StudyCafeLockerPass lockerPass) {
         System.out.println();
         String askMessage = String.format(
-            "사물함을 이용하시겠습니까? (%s)",
-            lockerPass.display()
+                "사물함을 이용하시겠습니까? (%s)",
+                lockerPass.display()
         );
 
         System.out.println(askMessage);
         System.out.println("1. 예 | 2. 아니오");
+    }
+
+    public void showPassOrderSummary(StudyCafePass selectedPass) {
+        showPassOrderSummary(selectedPass, null);
     }
 
     public void showPassOrderSummary(StudyCafePass selectedPass, StudyCafeLockerPass lockerPass) {
