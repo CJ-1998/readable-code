@@ -44,4 +44,22 @@ class StudyCafePassOrderTest {
         assertThat(totalPrice).isEqualTo(answerPrice);
     }
 
+    @DisplayName("가지고 있는 패스의 할인 해주는 금액은 패스의 금액과 할인율을 곱하는 것이다.")
+    @Test
+    void calculateDiscountPriceOfPass() {
+        //given
+        StudyCafeSeatPass studyCafeFixedSeatPass = StudyCafeSeatPass.of(StudyCafePassType.FIXED, 12, 700000, 0.15);
+        StudyCafeLockerPass studyCafeLockerPass = StudyCafeLockerPass.of(StudyCafePassType.FIXED, 4, 10000);
+
+        StudyCafePassOrder passOrder = StudyCafePassOrder.of(studyCafeFixedSeatPass, studyCafeLockerPass);
+
+        //when
+        int discountPrice = passOrder.getDiscountPrice();
+
+        int answerDiscountPrice = (int) (700000 * 0.15);
+
+        //then
+        assertThat(discountPrice).isEqualTo(answerDiscountPrice);
+    }
+
 }
